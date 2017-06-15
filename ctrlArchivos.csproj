@@ -138,6 +138,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="vista\buscaexpediente.aspx" />
     <Content Include="vista\buscarunidad.aspx" />
     <Content Include="vista\expediente.aspx" />
     <Content Include="vista\documento.aspx" />
@@ -185,6 +186,13 @@
     <Compile Include="Modelo\Unidadadministrativa.cs" />
     <Compile Include="Modelo\Workmedium.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="vista\buscaexpediente.aspx.cs">
+      <DependentUpon>buscaexpediente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vista\buscaexpediente.aspx.designer.cs">
+      <DependentUpon>buscaexpediente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="vista\buscarunidad.aspx.cs">
       <DependentUpon>buscarunidad.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
