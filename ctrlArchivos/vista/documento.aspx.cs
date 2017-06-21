@@ -24,6 +24,9 @@ namespace ctrlArchivos.vista
                 medium.cargausuario(DropDownList4);
                 medium.cargausuario(DropDownList5);
                 medium.cargaclasificacion(DropDownList9);
+                string con = "Select * From documento";
+                string al = "documento";
+                medium.selectexpediente(GridView1,con,al);
             }
 
         }

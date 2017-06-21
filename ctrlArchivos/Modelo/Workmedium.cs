@@ -694,5 +694,24 @@ namespace ctrlArchivos.Modelo
             }
         }
 
+
+        DataSet setglobal = new DataSet();
+
+        public void selectexpediente(GridView d1, string consulta, string alias)
+        {
+            String query = consulta;
+            Sqlconection.querysetrefer(ref setglobal, Sqlconection.Mconect(ref m), query, ref m, alias);
+            
+            d1.DataSource = setglobal.Tables[alias];
+            d1.DataBind();
+        }
+
+
+       
+
+
+
+
+
     }
 }

@@ -46,6 +46,11 @@ namespace ctrlArchivos.vista
                 miExp.inicioDeshabilitar(
                     TxtFrmtoSoporte
                     );
+
+
+                string con ="Select * From expediente";
+                string al = "expediente";
+                medium.selectexpediente(GridView1,con,al);
             }
         }
 

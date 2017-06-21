@@ -368,6 +368,9 @@
                     </asp:DropDownList>
                     <asp:DropDownList ID="DdlIdAutorizadorExp"  class="form-control" runat="server" AutoPostBack="True">
                     </asp:DropDownList>
+                    
+       
+
                 </div>
 
                 
@@ -382,6 +385,22 @@
                         <asp:Button ID="Button3" runat="server" Text="Actualizar" OnClick="Button3_Click" />
             </div>
         </div>
+         <div class="mycontrol">
+         <asp:GridView ID="GridView1" runat="server">
+        </asp:GridView>
+              </div>
+      
+
+        
+
+
+
+        
+
+      
+
+        
+
 
         
 

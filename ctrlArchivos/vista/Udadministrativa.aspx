@@ -77,6 +77,9 @@
 
                 <asp:DropDownList ID="ddlunipert" runat="server"></asp:DropDownList>
             </div>
+
+
+     
         </div>
 
 
@@ -91,6 +94,7 @@
 
                 <asp:Label ID="lblidnivel" runat="server" Text="hola"></asp:Label>
             </div>
+           
         </div>
 
     
@@ -101,6 +105,9 @@
                   </div>
               
                </div>
+            <div class="mycontrol">
+         <asp:GridView ID="GridView1" runat="server">
+        </asp:GridView>
+              </div>
 
-    
 </asp:Content>

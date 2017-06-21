@@ -18,6 +18,10 @@ namespace ctrlArchivos.vista
             medium.cargacombonivel(ddlnomnivel);
 
             medium.cargacombounidadperteencia(ddlunipert);
+
+            string con = "Select * From unidad_admva";
+            string al = "unidad_admva";
+            medium.selectexpediente(GridView1, con, al);
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -53,6 +57,7 @@ namespace ctrlArchivos.vista
         protected void btnbuscar_Click(object sender, EventArgs e)
         {
             Response.Redirect("buscarunidad.aspx");
+
         }
     }
 }

@@ -183,4 +183,9 @@
         <asp:Button ID="btneliminar" class="btn btn-primary btn-lg btn-block" runat="server" Text="Eliminar" OnClick="btneliminar_Click" />
 
     </div>
+
+ <div class="mycontrol">
+         <asp:GridView ID="GridView1" runat="server">
+        </asp:GridView>
+              </div>
 </asp:Content>
