@@ -45,6 +45,12 @@
         
             <br />
                         
+             <div class="mycontrol">
+                Clasificacion expediente:<br />
+                <asp:DropDownList ID="Ddlclasifi" AutoPostBack="True" class="form-control" runat="server" OnSelectedIndexChanged="Ddlclasifi_SelectedIndexChanged"></asp:DropDownList>
+                <br />
+                
+            </div>
 
             <div class="mycontrol">
                 Fondo:<br />
@@ -77,12 +83,7 @@
                 </asp:DropDownList>
             </div>
 
-              <div class="mycontrol">
-                Clasificacion expediente:<br />
-                <asp:DropDownList ID="Ddlclasifi" AutoPostBack="True" class="form-control" runat="server" OnSelectedIndexChanged="Ddlclasifi_SelectedIndexChanged"></asp:DropDownList>
-                <br />
-                
-            </div>
+             
 
 
             <div class="mycontrol">
@@ -195,20 +196,20 @@
 
             <div class="mycontrolLong">
                 Vinculación con otro expediente:<br />
-                <asp:RadioButton ID="RdbSiVinculado"  class="form-control" runat="server" Text="si" GroupName="vincotros"  AutoPostBack="True" />
-                <asp:RadioButton ID="RdbNoVinculado"  class="form-control" runat="server" Text="no" GroupName="vincotros" AutoPostBack="True"  />
+                <asp:RadioButton ID="RdbSiVinculado"  class="form-control" runat="server" Text="si" GroupName="vincotros"  AutoPostBack="True" OnCheckedChanged="RdbSiVinculado_CheckedChanged" />
+                <asp:RadioButton ID="RdbNoVinculado"  class="form-control" runat="server" Text="no" GroupName="vincotros" AutoPostBack="True" OnCheckedChanged="RdbNoVinculado_CheckedChanged"  />
                 <asp:DropDownList ID="DdlVincOtros" class="form-control" runat="server" AutoPostBack="True"  ></asp:DropDownList>
             </div>
 
             <div class="myctrlXLong">
                 Formato de soporte:<br />
-                <asp:CheckBox ID="ChkPapel"  class="form-control" runat="server" Text="Papel" AutoPostBack="True"  />
+                <asp:CheckBox ID="ChkPapel"  class="form-control" runat="server" Text="Papel" AutoPostBack="True" OnCheckedChanged="ChkPapel_CheckedChanged"  />
                 
-                <asp:CheckBox ID="ChkFoto"  class="form-control" runat="server" Text="Fotografía" AutoPostBack="True"  />
+                <asp:CheckBox ID="ChkFoto"  class="form-control" runat="server" Text="Fotografía" AutoPostBack="True" OnCheckedChanged="ChkFoto_CheckedChanged"  />
                 
-                <asp:CheckBox ID="ChkUsb"  class="form-control" runat="server" Text="USB" AutoPostBack="True"  />
+                <asp:CheckBox ID="ChkUsb"  class="form-control" runat="server" Text="USB" AutoPostBack="True" OnCheckedChanged="ChkUsb_CheckedChanged"  />
                 
-                <asp:CheckBox ID="ChkDisco"  class="form-control" runat="server" Text="Disco" AutoPostBack="True"  />
+                <asp:CheckBox ID="ChkDisco"  class="form-control" runat="server" Text="Disco" AutoPostBack="True" OnCheckedChanged="ChkDisco_CheckedChanged"  />
                 
                 <asp:CheckBox ID="ChkOtros"  class="form-control" runat="server" Text="Otros(especificar):" AutoPostBack="True"  />
 
@@ -248,7 +249,7 @@
             </div>
             <div class="mycontrol">
                 No. de edificio:<br />
-                <asp:DropDownList ID="DdlNoEd" class="form-control" runat="server" AutoPostBack="True" >
+                <asp:DropDownList ID="DdlNoEd" class="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DdlNoEd_SelectedIndexChanged" >
                 </asp:DropDownList>
                  <asp:DropDownList ID="DdlIdNoEd" class="form-control" runat="server" AutoPostBack="True">
                 </asp:DropDownList>
@@ -261,14 +262,14 @@
 
             <div class="mycontrol">
                 No. de piso:<br />
-                <asp:DropDownList ID="DdlNoPiso" class="form-control" runat="server" AutoPostBack="True"  >
+                <asp:DropDownList ID="DdlNoPiso" class="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DdlNoPiso_SelectedIndexChanged"  >
                 </asp:DropDownList>
                  <asp:DropDownList ID="DdlIdNoPiso" class="form-control" runat="server" AutoPostBack="True">
                 </asp:DropDownList>
             </div>
             <div class="mycontrol">
                 No. de pasillo:<br />
-                <asp:DropDownList ID="DdlNoPasillo" class="form-control" runat="server" AutoPostBack="True"  >
+                <asp:DropDownList ID="DdlNoPasillo" class="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DdlNoPasillo_SelectedIndexChanged"  >
                 </asp:DropDownList>
                  <asp:DropDownList ID="DdlIdNoPasillo" class="form-control" runat="server" AutoPostBack="True">
                 </asp:DropDownList>
@@ -276,7 +277,7 @@
 
             <div class="mycontrol">
                 No. de estante:<br />
-                <asp:DropDownList ID="DdlNoEst" class="form-control" runat="server" AutoPostBack="True"  >
+                <asp:DropDownList ID="DdlNoEst" class="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DdlNoEst_SelectedIndexChanged"  >
                 </asp:DropDownList>
                  <asp:DropDownList ID="DdlIdNoEst" class="form-control" runat="server" AutoPostBack="True">
                 </asp:DropDownList>
@@ -284,7 +285,7 @@
 
             <div class="mycontrol">
                 No. de charola:<br />
-                <asp:DropDownList ID="DdlNoChar" class="form-control" runat="server" AutoPostBack="True"  >
+                <asp:DropDownList ID="DdlNoChar" class="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DdlNoChar_SelectedIndexChanged"  >
                 </asp:DropDownList>
                  <asp:DropDownList ID="DdlIdNoChar" class="form-control" runat="server" AutoPostBack="True">
                 </asp:DropDownList>
@@ -292,7 +293,7 @@
 
             <div class="mycontrol">
                 Unidad de instalacion o numero de la caja:<br />
-                <asp:DropDownList ID="DdlNoCaja" class="form-control" runat="server" AutoPostBack="True"  >
+                <asp:DropDownList ID="DdlNoCaja" class="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DdlNoCaja_SelectedIndexChanged"  >
                 </asp:DropDownList>
                  <asp:DropDownList ID="DdlIdNoCaja" class="form-control" runat="server" AutoPostBack="True">
                 </asp:DropDownList>
@@ -325,7 +326,7 @@
 
                 <div class="mycontrol">
                     Capturado por:
-                    <asp:DropDownList ID="DdlRespCaptura"  class="form-control" runat="server" AutoPostBack="True" >
+                    <asp:DropDownList ID="DdlRespCaptura"  class="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DdlRespCaptura_SelectedIndexChanged" >
                     </asp:DropDownList>
                     <asp:DropDownList ID="DdlIdRespCaptura"  class="form-control" runat="server" AutoPostBack="True">
                     </asp:DropDownList>

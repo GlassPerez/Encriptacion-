@@ -178,12 +178,15 @@
     </Compile>
     <Compile Include="Modelo\cargarWebFormExpediente.cs" />
     <Compile Include="Modelo\Conectasql.cs" />
+    <Compile Include="Modelo\Criptography.cs" />
     <Compile Include="Modelo\documento.cs" />
+    <Compile Include="Modelo\Encript.cs" />
     <Compile Include="Modelo\Expediente.cs" />
     <Compile Include="Modelo\servidor.cs" />
     <Compile Include="Modelo\Datos.cs" />
     <Compile Include="Modelo\Metodo.cs" />
     <Compile Include="Modelo\Unidadadministrativa.cs" />
+    <Compile Include="Modelo\Validacion.cs" />
     <Compile Include="Modelo\Workmedium.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="vista\buscaexpediente.aspx.cs">

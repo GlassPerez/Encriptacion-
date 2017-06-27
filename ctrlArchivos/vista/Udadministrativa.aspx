@@ -48,7 +48,21 @@
 
                 Nombre de la unidad:<br />
 
-                <asp:TextBox ID="Txtnomuni" runat="server"></asp:TextBox>
+                 <script type="text/javascript"  lang="js">
+        $(function()
+        {     var n = "gg";
+               $("#<%=Txtnomuni.ClientID %>").keypress(function(){
+                              
+                   
+                     alert("Wow; Its Work!.")
+               
+           });
+                    });
+    </script>
+
+
+
+                <asp:TextBox ID="Txtnomuni" runat="server" AutoPostBack="True" OnTextChanged="Txtnomuni_TextChanged"></asp:TextBox>
 
             </div>
 
@@ -75,7 +89,7 @@
             <div class="mycontrol">
                 Pertenencia de unidad administrativa:<br />
 
-                <asp:DropDownList ID="ddlunipert" runat="server"></asp:DropDownList>
+                <asp:DropDownList ID="ddlunipert" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlunipert_SelectedIndexChanged"></asp:DropDownList>
             </div>
 
 
@@ -86,7 +100,7 @@
         <div class="mycontrol">
                 Nivel de unidad administrativa:<br />
 
-                <asp:DropDownList ID="ddlnomnivel" runat="server" OnSelectedIndexChanged="ddlnomnivel_SelectedIndexChanged">
+                <asp:DropDownList ID="ddlnomnivel" AutoPostBack="True" runat="server" OnSelectedIndexChanged="ddlnomnivel_SelectedIndexChanged">
                 </asp:DropDownList>
               
 

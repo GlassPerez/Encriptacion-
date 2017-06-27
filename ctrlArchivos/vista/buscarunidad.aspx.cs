@@ -16,31 +16,26 @@ namespace ctrlArchivos.vista
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            {
-                Session["medio"] = medium;
-                medium.cargaunidad(ddlunidad);
+            {              
+
+              //  medium.cargacombonivel(ddlnivel);
+              //  medium.cargacombounidadperteencia(ddlunipert);
+                medium.cargacombounidadperteencia(ddlunidad);
+
             }
         }
 
         protected void btnelimina_Click(object sender, EventArgs e)
-        {
-            medium = (Workmedium)Session["medio"];
-            medium.eliminaaunidad(Txtiduni);
-            Session["medio"] = medium;
+        {           
+            medium.eliminaaunidad(Txtiduni);            
         }
 
         protected void ddlunidad_SelectedIndexChanged(object sender, EventArgs e)
         {
             
-            medium = (Workmedium)Session["medio"];
-
-            Txtiduni.Text = "";
-            Txtnomuni.Text = "";
-            Txtteluni.Text = "";
-            Txtemailuni.Text = "";
-            Txtdomiunni.Text = "";
 
             medium.muestraunidades(ddlunidad);
+
             medium.cargacombonivel(ddlnivel);
             medium.cargacombounidadperteencia(ddlunipert);
 
@@ -50,11 +45,8 @@ namespace ctrlArchivos.vista
             Txtemailuni.Text = medium.emailunidadadministrativa;
             Txtdomiunni.Text = medium.domiciliounidadadministrativa;
 
-            ddlnivel.Text = medium.idnivel;
-            ddlunipert.Text = medium.idunidadpertenencia;
-
-
-            Session["medio"] = medium;
+            ddlnivel.SelectedValue = medium.idnivel;
+            ddlunipert.SelectedValue = medium.idunidadpertenencia;           
 
         }
 
@@ -65,9 +57,8 @@ namespace ctrlArchivos.vista
             medium.telefonounidadadministrativa = Txtteluni.Text;
             medium.emailunidadadministrativa = Txtemailuni.Text;
             medium.domiciliounidadadministrativa = Txtdomiunni.Text;
-            medium.idunidadpertenencia = ddlunipert.Text;
-            medium.idnivel = ddlnivel.Text;
-
+            medium.idunidadpertenencia = ddlunipert.SelectedValue;
+            medium.idnivel = ddlnivel.SelectedValue;
             medium.actualizaunidad();
         }
 

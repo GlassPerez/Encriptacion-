@@ -15,13 +15,16 @@ namespace ctrlArchivos.vista
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            medium.cargacombonivel(ddlnomnivel);
+            if (!IsPostBack)
+            {
+                medium.cargacombonivel(ddlnomnivel);
+                medium.cargacombounidadperteencia(ddlunipert);
 
-            medium.cargacombounidadperteencia(ddlunipert);
-
-            string con = "Select * From unidad_admva";
-            string al = "unidad_admva";
-            medium.selectexpediente(GridView1, con, al);
+                string con = "Select * From unidad_admva";
+                string al = "unidad_admva";
+                medium.selectexpediente(GridView1, con, al);
+                lblidnivel.Visible = false;
+            }
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -36,8 +39,7 @@ namespace ctrlArchivos.vista
 
         protected void ddlnomnivel_SelectedIndexChanged(object sender, EventArgs e)
         {
-            medium.obtennobrenivel(lblidnivel, ddlnomnivel);
-            System.Windows.Forms.MessageBox.Show("nn");       
+            System.Windows.Forms.MessageBox.Show(ddlnomnivel.SelectedValue);
         }
 
         protected void btnagregar_Click(object sender, EventArgs e)
@@ -47,9 +49,12 @@ namespace ctrlArchivos.vista
             medium.telefonounidadadministrativa = Txtteluni.Text;
             medium.emailunidadadministrativa = Txtemailuni.Text;
             medium.domiciliounidadadministrativa = Txtdomiunni.Text;
-            medium.idunidadpertenencia = ddlunipert.Text;
-            medium.idnivel = ddlnomnivel.Text;
+            medium.idunidadpertenencia = ddlunipert.SelectedValue;
+            medium.idnivel = ddlnomnivel.SelectedValue;
+
             
+           
+
             medium.agregarunidad();
 
         }
@@ -57,6 +62,25 @@ namespace ctrlArchivos.vista
         protected void btnbuscar_Click(object sender, EventArgs e)
         {
             Response.Redirect("buscarunidad.aspx");
+
+        }
+
+        protected void ddlunipert_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            System.Windows.Forms.MessageBox.Show(ddlunipert.SelectedValue);
+        }
+
+        public void mensa()
+        {
+            System.Windows.Forms.MessageBox.Show("hola");
+        }
+
+
+
+
+        protected void Txtnomuni_TextChanged(object sender, EventArgs e)
+        {
+            System.Windows.Forms.MessageBox.Show("hola");
 
         }
     }

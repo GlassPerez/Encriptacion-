@@ -12,360 +12,304 @@ namespace ctrlArchivos.vista
     {
         
         Expediente miExp = new Expediente(); //from ctrlArchivos.Modelo;
-
         Usuario2 obj1 = new Usuario2(); //from metodo
+        Workmedium medium = new Workmedium();
+        static String formato = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.MaintainScrollPositionOnPostBack = true;
             
             if (!IsPostBack)
             {
-                // Validate initially to force asterisks
-                // to appear before the first roundtrip.
-                Validate();
-                miExp.cargarDatosIniciales(
-                    ddlfondo,
-                    ddlidfondo,
-                    ddlseccion,
-                    ddlidseccion,
-                    ddlserie,
-                    ddlidserie,
-                    ddlaño,
-                    ddluadmva,
-                    ddlIduadmva,
-                    DdlFuncion,
-                    DdlAcceso,
-                    DdlValPrim,
-                    DdlTipExp,
-                    DdlDestFin,
-                    DdlValSec,
-                    DdlPlazoConser,
-                    DdlRespCaptura,
-                    DdlIdRespCaptura
-                );
-                miExp.inicioOcultar(
-                    DdlVincOtros
-                    
-                    );
-                miExp.inicioDeshabilitar(
-                    TxtFrmtoSoporte
-                    );
+                
+
+                medium.combofondo(ddlfondo);
+                medium.comboseccion(ddlseccion);
+                medium.comboserie(ddlserie);
+                medium.combounidadadmva(ddluadmva);
+                medium.combounidadadmva(ddlsubuadmva);
+                medium.combousuario(ddlcargoresp);
+                medium.comboedificio(DdlNoEd);
+                medium.combopiso(DdlNoPiso);
+                medium.combopasillo(DdlNoPasillo);
+                medium.comboestante(DdlNoEst);
+                medium.combocharola(DdlNoChar);
+                medium.comboUnidadInstOCaja(DdlNoCaja);
+                medium.combousuario(DdlRespCaptura);
+                medium.combousuario(DdlAutorizadorExp);
+
+                medium.GenerarAños(ddlaño);
+                medium.CargarGenerarFunciones(DdlFuncion);
+                medium.CargarGenerarAcceso(DdlAcceso);
+                medium.CargarGenerarDestFin(DdlDestFin);
+                medium.CargarGenerarTipoExp(DdlTipExp);
+                medium.CargarGenerarValPrim(DdlValPrim);
+                medium.CargarGenerarValSec(DdlValSec);
+                medium.carganoexpediente(DdlNoExp);
+                medium.CargarPeriodoConservacion(DdlPlazoConser);
+                medium.cargaclasificacion(DdlVincOtros);
+
+
+                ddlidfondo.Visible = false;
+                ddlidseccion.Visible = false;
+                ddlidserie.Visible = false;
+                ddlIduadmva.Visible = false;
+                ddlidsubuadmva.Visible = false;
+                ddlidcargoresp.Visible = false;
+                DdlIdNoEd.Visible = false;
+                DdlIdNoPiso.Visible = false;
+                DdlIdNoPasillo.Visible = false;
+                DdlIdNoEst.Visible = false;
+                DdlIdNoChar.Visible = false;
+                DdlIdNoCaja.Visible = false;
+                DdlIdRespCaptura.Visible = false;
+                DdlIdAutorizadorExp.Visible = false;
+                ChkOtros.Visible = false;
+                DdlVincOtros.Visible = false;
+                TxtNomFondo.Visible = false;
+                TxtDirFondo.Visible = false;
+                TxtObsFondo.Visible = false;
+                RdbNoVinculado.Checked = true;
             }
             
 
         }
-        Workmedium medium = new Workmedium();
+      
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-          
 
-            miExp.Clasificación = lblclasexp.Text;
-            miExp.idFondo = ddlidfondo.Text;
-            miExp.idseccion = ddlidseccion.Text;
-            miExp.idserie = ddlidserie.Text;
-            miExp.no_exp = int.Parse(DdlNoExp.Text);
-            miExp.año = int.Parse(ddlaño.Text);
-            miExp.id_unid_admva_resp = ddlIduadmva.Text;
-            miExp.id_area_prod = ddlidsubuadmva.Text;
-            miExp.id_resp_exp = ddlidcargoresp.Text;
-            miExp.resumen_exp = TxtResumen.Text;
-            miExp.asunto_exp = TxtAsuntoExp.Text;
-            miExp.funcion_exp = DdlFuncion.Text;
-            miExp.acceso_exp = DdlAcceso.Text;
-            miExp.val_prim_exp = DdlValPrim.Text;
-            miExp.fec_ext_ini_exp = DateTime.Parse(TxtFecExtIni.Text);
-            miExp.fec_ext_fin_exp = DateTime.Parse(TxtFecExtFin.Text);
-            miExp.no_legajo_exp = int.Parse(TxtNoLegajo.Text);
-            miExp.no_fojas_exp = int.Parse(TxtNoFojas.Text);
-            miExp.vinc_otro_exp = "Cambiar por DDL";
-            miExp.id_exp_vincd = DdlVincOtros.Text;
-            miExp.formato_Soporte = TxtFrmtoSoporte.Text;//validar que se seleccione al menos 1 o no este vacio
-            miExp.plazo_conservacion_exp = int.Parse(DdlPlazoConser.Text);
-            miExp.tipo_exp = DdlTipExp.Text;
-            miExp.destino_final_exp = DdlDestFin.Text;
-            miExp.valores_secundarios_exp = DdlValSec.Text;
-            miExp.id_ubic_topog = LblIdUbicTopog.Text;
-            miExp.IdEdificio = DdlIdNoEd.Text;
-            miExp.IdPisoEd = DdlIdNoPiso.Text;
-            miExp.IdPasillo = DdlIdNoPasillo.Text;
-            miExp.IdEstante = DdlIdNoEst.Text;
-            miExp.IdCharola = DdlIdNoChar.Text;
-            miExp.IdUnidInsCaja = DdlIdNoCaja.Text;
-            miExp.fecha_alta_exp = DateTime.Parse(TxtFechaCaptura.Text);
-            miExp.id_capturista_exp = DdlIdRespCaptura.Text;
-            miExp.id_autorizador_exp = DdlIdAutorizadorExp.Text;
 
-            int r = miExp.Guardar();
+            medium.Clasificación = lblclasexp.Text;
+            medium.idFondo = ddlfondo.SelectedValue;
+            medium.idseccion = ddlseccion.SelectedValue;
+            medium.idserie = ddlserie.SelectedValue;
+            medium.no_exp = int.Parse(DdlNoExp.Text);
+            medium.año = int.Parse(ddlaño.Text);
+            medium.id_unid_admva_resp = ddluadmva.SelectedValue;
+            medium.id_area_prod = ddlsubuadmva.SelectedValue;
+            medium.id_resp_exp = ddlcargoresp.SelectedValue;
+            medium.resumen_exp = TxtResumen.Text;
+            medium.asunto_exp = TxtAsuntoExp.Text;
+            medium.funcion_exp = DdlFuncion.Text;
+            medium.acceso_exp = DdlAcceso.Text;
+            medium.val_prim_exp = DdlValPrim.Text;
+            medium.fec_ext_ini_exp = DateTime.Parse(TxtFecExtIni.Text);
+            medium.fec_ext_fin_exp = DateTime.Parse(TxtFecExtFin.Text);
+            medium.no_legajo_exp = int.Parse(TxtNoLegajo.Text);
+            medium.no_fojas_exp = int.Parse(TxtNoFojas.Text);
+            medium.vinc_otro_exp = "Cambiar por DDL";
+            medium.id_exp_vincd = DdlVincOtros.Text;
+            medium.formato_Soporte = formato;//validar que se seleccione al menos 1 o no este vacio
+            medium.plazo_conservacion_exp = int.Parse(DdlPlazoConser.Text);
+            medium.tipo_exp = DdlTipExp.Text;
+            medium.destino_final_exp = DdlDestFin.Text;
+            medium.valores_secundarios_exp = DdlValSec.Text;
+            medium.id_ubic_topog =DdlNoEd.SelectedValue+"-"+ LblIdUbicTopog.Text;
+            medium.IdEdificio = DdlNoEd.SelectedValue;
+            medium.IdPisoEd = DdlNoPiso.SelectedValue;
+            medium.IdPasillo = DdlNoPasillo.SelectedValue;
+            medium.IdEstante = DdlNoEst.SelectedValue;
+            medium.IdCharola = DdlNoChar.SelectedValue;
+            medium.IdUnidInsCaja = DdlNoCaja.SelectedValue;
+            medium.fecha_alta_exp = DateTime.Parse(TxtFechaCaptura.Text);
+            medium.id_capturista_exp = DdlRespCaptura.SelectedValue;
+            medium.id_autorizador_exp = DdlAutorizadorExp.SelectedValue;
 
-            if (r == 1)
-            {
-                ClientScript.RegisterStartupScript(GetType(), "mostrar", "GuardarDatos();", true);
-                medium.agregarunidadexpe(ddlIduadmva.Text,miExp.Clasificación);
-            }
-            else if (r == 0)
-                ClientScript.RegisterStartupScript(GetType(), "mostrar", "ErAgregar();", true);
-            else
-                ClientScript.RegisterStartupScript(GetType(), "mostrar", "ErAgregar();", true);
-            
+            medium.Guardar();
+            medium.agregarunidadexpe(ddluadmva.SelectedValue,lblclasexp.Text);
         }
 
         protected void ddlfondo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lblclasexp.Text = ""; //siempre que se elija el fondo se inicia la clasificacion
+           
+            lblclasexp.Text = ""+ddlfondo.SelectedValue;
 
-            //busca la clave del fondo seleccionado
-            miExp.buscarIdCorrespondiente(ddlfondo, ddlidfondo);
-            miExp.CargarUbicTopog(ddlidfondo, DdlNoEd, DdlIdNoEd);
-            
-            lblclasexp.Text = ddlidfondo.Text;
-
-            //recupera el fondo y genera el numero del ultimo expediente y otro mas
-            miExp.idFondo = ddlidfondo.Text;
-            miExp.Genera_expediente(DdlNoExp);
-            ddlfondo.Focus();
-
-            //inicia la generacion de la clave de la ubicacion topografica del expediente
-            LblIdUbicTopog.Text = ddlidfondo.Text + "-";
         }
 
         protected void ddlseccion_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //busca la clave del fondo seleccionado
-            miExp.buscarIdCorrespondiente(ddlseccion, ddlidseccion);
-           
-            lblclasexp.Text += "-" + ddlidseccion.Text;
 
-            miExp.CargarSeccion(ddlserie, ddlidseccion, ddlidserie);
-
-            ddlseccion.Focus();
-
+            lblclasexp.Text = "" + ddlfondo.SelectedValue+"-"+ddlseccion.SelectedValue;
         }
 
         protected void ddlserie_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //busca la clave de la serie seleccionada
-            miExp.buscarIdCorrespondiente(ddlserie, ddlidserie);
-            
-            lblclasexp.Text += "-" + ddlidserie.Text;
-            ddlserie.Focus();
+            lblclasexp.Text = "" + ddlfondo.SelectedValue + "-" + ddlseccion.SelectedValue+"-"+ddlserie.SelectedValue;
         }
 
         protected void ddlaño_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lblclasexp.Text += "-" +DdlNoExp.Text + "-" + ddlaño.Text;
-            ddlaño.Focus();
+            
         }
 
         protected void ddluadmva_SelectedIndexChanged(object sender, EventArgs e)
         {
-            miExp.CargarUadmva(ddlIduadmva, ddluadmva, 
-                ddlsubuadmva, ddlidsubuadmva,
-                DdlAutorizadorExp, DdlIdAutorizadorExp);
-            ddlsubuadmva.Focus();
+            
         }
 
         protected void ddlsubuadmva_SelectedIndexChanged(object sender, EventArgs e)
         {
-            miExp.CargarSubUadmva(ddlIduadmva, ddlidsubuadmva, 
-                ddlsubuadmva, ddlcargoresp, ddlidcargoresp,
-                DdlAutorizadorExp, DdlIdAutorizadorExp, DdlRespCaptura, DdlIdRespCaptura);
-            ddlcargoresp.Focus();
+         
         }
 
         protected void ddlcargoresp_SelectedIndexChanged(object sender, EventArgs e)
         {
-            miExp.CargarResp(ddlcargoresp, ddlidcargoresp);
-            miExp.CargarDatosResp(ddlsubuadmva, ddlidcargoresp, 
-                TxtNomRespExp, TxtCargoRespExp, 
-                TxtTelRespExp, TxtEmailRespExp, TxtUnidAdmvaACargo);
-            ddlcargoresp.Focus();
         }
 
         protected void DdlFuncion_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DdlFuncion.Focus();
+          
         }
 
         protected void DdlAcceso_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DdlAcceso.Focus();
+            
         }
 
         protected void DdlValPrim_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DdlValPrim.Focus();
+           
         }
 
         protected void DdlDestFin_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DdlDestFin.Focus();
+            
         }
 
         protected void DdlTipExp_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DdlTipExp.Focus();
+           
         }
 
         protected void DdlValSec_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DdlValSec.Focus();
+            
         }
 
         protected void DdlAutorizadorExp_SelectedIndexChanged(object sender, EventArgs e)
         {
-            miExp.CargarAutorizadorExp(DdlAutorizadorExp, DdlIdAutorizadorExp);
-            DdlAutorizadorExp.Focus();
+           
         }
 
         protected void RdbSiVinculado_CheckedChanged(object sender, EventArgs e)
         {
-            DdlVincOtros.Visible = true;
-            
-            
-            miExp.CargarVincOtros(RdbSiVinculado, RdbNoVinculado, DdlVincOtros);
-            //miExp.buscarIdCorrespondiente()
-
-            DdlVincOtros.Focus();
+            if (RdbSiVinculado.Checked)
+            {
+                DdlVincOtros.Visible = true;
+            }
         }
 
         protected void RdbNoVinculado_CheckedChanged(object sender, EventArgs e)
         {
-            DdlVincOtros.Visible = true;
-            miExp.CargarVincOtros(RdbSiVinculado, RdbNoVinculado, DdlVincOtros);
-            DdlVincOtros.Focus();
+            if (RdbNoVinculado.Checked)
+            {
+                DdlVincOtros.Visible = false;
+            }           
         }
 
         protected void ChkPapel_CheckedChanged(object sender, EventArgs e)
         {
-            TxtFrmtoSoporte.Text += ChkPapel.Text + " ";
-            TxtFrmtoSoporte.Visible = true;
-            ChkPapel.Enabled = false;
-            ChkFoto.Focus();
-
+            if (ChkPapel.Checked)
+            {
+                ChkFoto.Checked = false;
+                ChkUsb.Checked = false;
+                ChkDisco.Checked = false;
+                formato = ChkPapel.Text;
+            }
         }
 
         protected void ChkFoto_CheckedChanged(object sender, EventArgs e)
         {
-            TxtFrmtoSoporte.Text += ChkFoto.Text + " ";
-            TxtFrmtoSoporte.Visible = true;
-            ChkFoto.Enabled = false;
-            ChkUsb.Focus();
+            if (ChkFoto.Checked)
+            {
+                ChkPapel.Checked = false;
+                ChkUsb.Checked = false;
+                ChkDisco.Checked = false;
+                formato = ChkFoto.Text;
+            }
         }
 
         protected void ChkUsb_CheckedChanged(object sender, EventArgs e)
         {
-            TxtFrmtoSoporte.Text += ChkUsb.Text + " ";
-            TxtFrmtoSoporte.Visible = true;
-            ChkUsb.Enabled = false;
-            ChkDisco.Focus();
+            if (ChkUsb.Checked)
+            {
+                ChkPapel.Checked = false;
+                ChkFoto.Checked = false;
+                ChkDisco.Checked = false;
+                formato = ChkUsb.Text;
+            }
         }
 
         protected void ChkDisco_CheckedChanged(object sender, EventArgs e)
         {
-            TxtFrmtoSoporte.Text += ChkDisco.Text + " ";
-            TxtFrmtoSoporte.Visible = true;
-            ChkDisco.Enabled = false;
-            ChkOtros.Focus();
+            if (ChkDisco.Checked)
+            {
+                ChkPapel.Checked = false;
+                ChkUsb.Checked = false;
+                ChkFoto.Checked = false;
+                formato = ChkDisco.Text;
+            }
         }
 
         protected void ChkOtros_CheckedChanged(object sender, EventArgs e)
         {
-            TxtFrmtoSoporte.Visible = true;
-            TxtFrmtoSoporte.Enabled = true;
-            ChkOtros.Enabled = false;
-            TxtFrmtoSoporte.Focus();
+           
         }
 
         protected void DdlPlazoConser_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DdlPlazoConser.Focus();
+          
         }
 
         protected void DdlRespCaptura_SelectedIndexChanged(object sender, EventArgs e)
         {
-            miExp.buscarIdCorrespondiente(DdlRespCaptura, DdlIdRespCaptura);
-            DdlRespCaptura.Focus();
+            medium.cargabajoexpediente(DdlRespCaptura,TxtNomRespExp,TxtCargoRespExp,TxtTelRespExp,TxtEmailRespExp,TxtUnidAdmvaACargo);
         }
 
         protected void DdlVincOtros_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DdlVincOtros.Focus();
+           
         }
 
         protected void TxtFechaCaptura_TextChanged(object sender, EventArgs e)
         {
-            TxtFechaCaptura.Focus();
+           
         }
 
         protected void DdlNoEd_SelectedIndexChanged(object sender, EventArgs e)
         {
-            miExp.buscarIdCorrespondiente(DdlNoEd, DdlIdNoEd);
-            miExp.CargarPisos(DdlIdNoEd, DdlNoPiso, DdlIdNoPiso, ddlidfondo,
-                TxtNomFondo, TxtDirFondo, TxtObsFondo);
-            LblIdUbicTopog.Text += DdlIdNoEd.Text + "-";
-            DdlNoEd.Focus();
+            LblIdUbicTopog.Text = "" + DdlNoEd.SelectedValue;
         }
 
         protected void DdlNoPiso_SelectedIndexChanged(object sender, EventArgs e)
         {
-            miExp.buscarIdCorrespondiente(DdlNoPiso, DdlIdNoPiso);
-            miExp.CargarPasillos(DdlIdNoPiso, DdlNoPasillo, DdlIdNoPasillo);
-            LblIdUbicTopog.Text += DdlIdNoPiso.Text + "-";
-            DdlNoPiso.Focus();
+            LblIdUbicTopog.Text = "" + DdlNoEd.SelectedValue+"-"+DdlNoPiso.SelectedValue;
         }
 
         protected void DdlNoPasillo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            miExp.buscarIdCorrespondiente(DdlNoPasillo, DdlIdNoPasillo);
-            miExp.CargarEstantes(DdlIdNoPasillo, DdlNoEst, DdlIdNoEst);
-            LblIdUbicTopog.Text += DdlIdNoPasillo.Text + "-";
-            DdlIdNoPasillo.Focus();
+            LblIdUbicTopog.Text = "" + DdlNoEd.SelectedValue + "-" + DdlNoPiso.SelectedValue+"-"+DdlNoPasillo.SelectedValue;
         }
 
         protected void DdlNoEst_SelectedIndexChanged(object sender, EventArgs e)
         {
-            miExp.buscarIdCorrespondiente(DdlNoEst, DdlIdNoEst);
-            miExp.CargarCharolas(DdlIdNoEst, DdlNoChar, DdlIdNoChar);
-            LblIdUbicTopog.Text += DdlIdNoEst.Text + "-";
-            DdlIdNoEst.Focus();
+            LblIdUbicTopog.Text = "" + DdlNoEd.SelectedValue + "-" + DdlNoPiso.SelectedValue + "-" + DdlNoPasillo.SelectedValue+"-"+DdlNoEst.SelectedValue;
         }
 
         protected void DdlNoChar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            miExp.buscarIdCorrespondiente(DdlNoChar, DdlIdNoChar);
-            miExp.CargarUnidCajas(DdlIdNoChar, DdlNoCaja, DdlIdNoCaja);
-            LblIdUbicTopog.Text += DdlIdNoChar.Text + "-";
-            DdlNoChar.Focus();
+            LblIdUbicTopog.Text = "" + DdlNoEd.SelectedValue + "-" + DdlNoPiso.SelectedValue + "-" + DdlNoPasillo.SelectedValue + "-" + DdlNoEst.SelectedValue+"-"+DdlNoChar.SelectedValue;
         }
 
         protected void DdlNoCaja_SelectedIndexChanged(object sender, EventArgs e)
         {
-            miExp.buscarIdCorrespondiente(DdlNoCaja, DdlIdNoCaja);
-            LblIdUbicTopog.Text += DdlIdNoCaja.Text;
-            DdlNoChar.Focus();
+            LblIdUbicTopog.Text = "" + DdlNoEd.SelectedValue + "-" + DdlNoPiso.SelectedValue + "-" + DdlNoPasillo.SelectedValue + "-" + DdlNoEst.SelectedValue + "-" + DdlNoChar.SelectedValue+"-"+DdlNoCaja.SelectedValue;
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            //hasta aca vamos =)
-            String clasificacion = lblclasexp.Text;
-
-            miExp = miExp.Buscar(clasificacion);
-
-            if (miExp != null)
-            {
-                miExp.cargarExpEncontrado(
-                    miExp,
-                    ddluadmva,
-                    ddlIduadmva,
-                    ddlsubuadmva,
-                    ddlidsubuadmva
-                    );
-            }
-            else
-            {
-                //expediente no encontrado
-            }
+           
             Response.Redirect("buscaexpediente.aspx");
         }
     }
